@@ -1,0 +1,28 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+    </style>
+
+
+    <!--启动页面全屏设置 -->
+    <style name="SplashStyle" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <!--音乐-->
+    <style name="Music" parent="AppTheme">
+        <item name="colorPrimary">@android:color/transparent</item>
+        <item name="elevation">0dp</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+
+</resources>

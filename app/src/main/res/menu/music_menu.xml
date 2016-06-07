@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/toolbar_serach"
+        android:icon="@mipmap/ic_search_white_36dp"
+        android:title="搜索"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/toolbar_more"
+        android:icon="@mipmap/ic_launcher"
+        android:title="菜单" />
+
+</menu>
