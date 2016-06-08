@@ -34,8 +34,6 @@ public class MainDelegate extends AppDelegate {
     @Override
     public Toolbar getToolbar() {
         main_toorbar.setTitle("个人介绍   素笺");
-
-
         return get(R.id.main_toorbar);
     }
 

@@ -6,6 +6,7 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
@@ -44,27 +45,33 @@ public class MainActivity extends ActivityPresenter<MainDelegate> {
     protected void initView() {
         super.initView();
         initMenu();
-        initActionBar();
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                dl_main.openDrawer(GravityCompat.START);
+//                dl_main.openDrawer(GravityCompat.START);
                 return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
 
-    private void initActionBar() {
+    @Override
+    protected void initToolbar() {
+        super.initToolbar();
         main_toorbar.setNavigationIcon(R.mipmap.ic_arrow_back_white_36dp);
-//        final ActionBar actionBar =getSupportActionBar();
-//        if (actionBar != null) {
-//            actionBar.setDisplayHomeAsUpEnabled(true);
-//            actionBar.setDisplayShowHomeEnabled(true);
-//        }
+        final ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setDisplayShowHomeEnabled(true);
+        }
+
+        ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(this, dl_main, main_toorbar, R.string.drawer_open,
+                R.string.drawer_close);
+        mDrawerToggle.syncState();
+        dl_main.setDrawerListener(mDrawerToggle);
     }
 
 

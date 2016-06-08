@@ -5,25 +5,22 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
-import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.sujian.materaildesign.R;
 import com.sujian.materaildesign.frame.view.AppDelegate;
 import com.sujian.materaildesign.presenter.MusicActivity;
 
-
 import net.qiujuer.genius.blur.StackBlur;
 
 import butterknife.BindView;
 
 /**
+ * 音乐view
  * Created by sujian on 2016/6/3.
  * Mail:121116111@qq.com
  */
@@ -46,7 +43,6 @@ public class MusicDalegale extends AppDelegate {
         super.initWidget();
         initBG();
     }
-
 
     @Override
     public Toolbar getToolbar() {
