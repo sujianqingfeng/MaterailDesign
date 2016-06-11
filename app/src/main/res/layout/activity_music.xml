@@ -28,4 +28,32 @@
     </android.support.design.widget.AppBarLayout>
 
 
+    <FrameLayout
+        android:layout_centerInParent="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <io.feeeei.circleseekbar.CircleSeekBar
+            android:id="@+id/seekbar"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            app:wheel_max_process="100"
+            app:wheel_reached_width="3dp"
+            android:layout_gravity="center"
+            app:wheel_unreached_width="3dp"
+            app:wheel_pointer_radius="3dp" />
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_image"
+            android:layout_gravity="center"
+            android:layout_width="235dp"
+            android:layout_height="235dp"
+            android:src="@mipmap/iv_menu_head"
+            app:civ_border_width="1dp"
+            app:civ_border_color="#FFffff" />
+
+    </FrameLayout>
+
+
 </RelativeLayout>

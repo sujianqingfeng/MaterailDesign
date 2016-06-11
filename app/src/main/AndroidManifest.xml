@@ -29,6 +29,7 @@
         <activity
             android:name=".presenter.MusicActivity"
             android:theme="@style/Music" />
+        <activity android:name=".presenter.NewsActivity"></activity>
     </application>
 
 </manifest>

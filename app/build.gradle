@@ -49,6 +49,10 @@ dependencies {
     compile 'com.android.support:palette-v7:23.4.0'
 
     compile 'com.jcodecraeer:xrecyclerview:1.2.7'
-
+    /*模糊*/
     compile 'net.qiujuer.genius:blur:2.0.0-beta4'
+    /*原形seekbar*/
+    compile 'com.github.feeeei:CircleSeekbar:v1.0.3'
+
+    compile 'de.hdodenhof:circleimageview:2.0.0'
 }

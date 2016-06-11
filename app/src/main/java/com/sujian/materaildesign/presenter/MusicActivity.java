@@ -30,7 +30,8 @@ public class MusicActivity extends ActivityPresenter<MusicDalegale> {
     Toolbar tb_music;
 
     private SearchView searchView;
-
+    //宽度
+    private int searchWidth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,8 +51,7 @@ public class MusicActivity extends ActivityPresenter<MusicDalegale> {
         tb_music.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Logger.e(searchView.getMeasuredWidth() + "----------------------");
-                if (searchView.getMeasuredWidth() > 600) {
+                if (searchView.getMeasuredWidth() > searchWidth) {
                     searchView.onActionViewCollapsed();
                 } else {
                     finish();
@@ -73,6 +73,7 @@ public class MusicActivity extends ActivityPresenter<MusicDalegale> {
             }
         });
         searchView = (SearchView) tb_music.findViewById(R.id.toolbar_serach);
+        searchWidth = searchView.getMeasuredWidth();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -86,9 +87,6 @@ public class MusicActivity extends ActivityPresenter<MusicDalegale> {
                 return false;
             }
         });
-
-
-
 
     }
 
