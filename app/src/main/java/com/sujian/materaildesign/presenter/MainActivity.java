@@ -117,6 +117,8 @@ public class MainActivity extends ActivityPresenter<MainDelegate> {
      * 初始化侧边菜单
      */
     private void initMenu() {
+
+        nv_menu.setCheckedItem(R.id.navigation_sub_item_1);
         nv_menu.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {
@@ -136,6 +138,7 @@ public class MainActivity extends ActivityPresenter<MainDelegate> {
                         initTheme();
                         break;
                 }
+                nv_menu.setCheckedItem(item.getItemId());
                 return false;
             }
         });
