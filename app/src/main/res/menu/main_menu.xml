@@ -1,16 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item
-        android:id="@+id/navigation_sub_item_1"
-        android:icon="@mipmap/ic_launcher"
-        android:title="主页" />
-    <item
-        android:id="@+id/navigation_sub_item_2"
-        android:icon="@mipmap/ic_launcher"
-        android:title="图片" />
 
-    <item
-        android:id="@+id/navigation_sub_item_3"
-        android:icon="@mipmap/ic_launcher"
-        android:title="音乐" />
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/navigation_sub_item_1"
+            android:icon="@mipmap/ic_account_circle_black_36dp"
+            android:title="@string/home" />
+        <item
+            android:id="@+id/navigation_sub_item_2"
+            android:icon="@mipmap/ic_filter_black_36dp"
+            android:title="@string/pic" />
+
+        <item
+            android:id="@+id/navigation_sub_item_3"
+            android:icon="@mipmap/ic_album_black_36dp"
+            android:title="@string/music" />
+
+        <item
+            android:id="@+id/navigation_sub_item_4"
+            android:icon="@mipmap/ic_subscriptions_black_36dp"
+            android:title="视频" />
+
+        <item
+            android:id="@+id/navigation_sub_item_5"
+            android:icon="@mipmap/ic_fiber_new_black_36dp"
+            android:title="新闻" />
+    </group>
+
+    <item android:title="orther">
+        <menu>
+            <item
+                android:id="@+id/menu_night"
+                android:icon="@mipmap/ic_settings_brightness_black_36dp"
+                android:title="模式切换" />
+        </menu>
+    </item>
 </menu>

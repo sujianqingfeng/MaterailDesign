@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 import com.sujian.materaildesign.R;
 import com.sujian.materaildesign.frame.view.AppDelegate;
 import com.sujian.materaildesign.presenter.MainActivity;
+import com.sujian.materaildesign.uitls.T;
 
 import butterknife.BindView;
 
@@ -28,12 +29,13 @@ public class MainDelegate extends AppDelegate {
     @Override
     public void initWidget() {
         super.initWidget();
+
     }
 
 
     @Override
     public Toolbar getToolbar() {
-        main_toorbar.setTitle("个人介绍   素笺");
+        main_toorbar.setTitle("素笺");
         return get(R.id.main_toorbar);
     }
 

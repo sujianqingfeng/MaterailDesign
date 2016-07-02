@@ -16,6 +16,8 @@
 package com.sujian.materaildesign.frame.view;
 
 import android.app.Activity;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.Toolbar;
@@ -23,6 +25,8 @@ import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import butterknife.ButterKnife;
@@ -95,7 +99,31 @@ public abstract class AppDelegate implements IDelegate {
         Snackbar.make(rootView, msg, Snackbar.LENGTH_SHORT).show();
     }
 
+    public void snackbar(CharSequence msg, String actionMsg, View.OnClickListener listener) {
+        Snackbar.make(rootView, msg, Snackbar.LENGTH_SHORT)
+                .setAction(actionMsg, listener)
+                .setDuration(3000)
+                .show();
+    }
+
     public <T extends Activity> T getActivity() {
         return (T) rootView.getContext();
+    }
+
+
+    /**
+     * 半透明状态栏
+     */
+    public void initWindow() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getActivity().getWindow();
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
+                    | WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                    | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(Color.parseColor("#50000000"));
+            window.setNavigationBarColor(Color.TRANSPARENT);
+        }
     }
 }

@@ -56,23 +56,6 @@ public class MusicDalegale extends AppDelegate {
         return R.menu.music_menu;
     }
 
-    /**
-     * 半透明状态栏
-     */
-    public void initWindow() {
-        musicActivity = getActivity();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Window window = musicActivity.getWindow();
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
-                    | WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                    | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(Color.parseColor("#50000000"));
-            window.setNavigationBarColor(Color.TRANSPARENT);
-        }
-    }
 
     private void initBG() {
         rl_music.setBackgroundResource(R.mipmap.iv_splash);

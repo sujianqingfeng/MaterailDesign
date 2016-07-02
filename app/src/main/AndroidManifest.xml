@@ -23,13 +23,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".presenter.MainActivity" />
+        <activity
+            android:name=".presenter.MainActivity"
+            android:theme="@style/Home" />
         <activity android:name=".presenter.PictureActivity" />
         <activity android:name=".presenter.WebActivity" />
         <activity
             android:name=".presenter.MusicActivity"
             android:theme="@style/Music" />
-        <activity android:name=".presenter.NewsActivity"></activity>
+        <activity android:name=".presenter.NewsActivity" />
     </application>
 
 </manifest>
