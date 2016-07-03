@@ -20,6 +20,7 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
@@ -106,7 +107,7 @@ public abstract class AppDelegate implements IDelegate {
                 .show();
     }
 
-    public <T extends Activity> T getActivity() {
+    public <T extends AppCompatActivity> T getActivity() {
         return (T) rootView.getContext();
     }
 

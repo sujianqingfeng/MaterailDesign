@@ -5,4 +5,5 @@
     <string name="home">主页</string>
     <string name="pic">图片</string>
     <string name="music">音乐</string>
+    <string name="projectinteoduction">本项目使用知识点：\n\n Mvp\n Rxjava \n RxBus \n Glide \n ButterKnife \n Retrofit2\n MaterailDesign \n Gson \n RxSharedPreference \n XRecyclerView \n 夜间模式</string>
 </resources>

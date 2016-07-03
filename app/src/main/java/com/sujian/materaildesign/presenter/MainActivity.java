@@ -134,6 +134,10 @@ public class MainActivity extends ActivityPresenter<MainDelegate> {
                         startActivity(new Intent(MainActivity.this, MusicActivity.class));
                         break;
 
+                    case R.id.navigation_sub_item_5:
+
+                        break;
+
                     case R.id.menu_night:
                         initTheme();
                         break;

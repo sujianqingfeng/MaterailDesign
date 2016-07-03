@@ -5,9 +5,13 @@ import android.support.v7.widget.Toolbar;
 
 
 import com.sujian.materaildesign.R;
+import com.sujian.materaildesign.frame.presenter.FragmentPresenter;
 import com.sujian.materaildesign.frame.view.AppDelegate;
+import com.sujian.materaildesign.presenter.IntroductionFragment;
 import com.sujian.materaildesign.presenter.MainActivity;
 import com.sujian.materaildesign.uitls.T;
+
+import java.util.Collection;
 
 import butterknife.BindView;
 
@@ -17,7 +21,8 @@ import butterknife.BindView;
  * Mail:121116111@qq.com
  */
 
-public class MainDelegate extends AppDelegate {
+public class MainDelegate extends BaseViewPagerDelegate {
+
     @BindView(R.id.main_toorbar)
     Toolbar main_toorbar;
 
@@ -26,18 +31,22 @@ public class MainDelegate extends AppDelegate {
         return R.layout.activity_main;
     }
 
-    @Override
-    public void initWidget() {
-        super.initWidget();
-
-    }
-
 
     @Override
     public Toolbar getToolbar() {
         main_toorbar.setTitle("素笺");
         return get(R.id.main_toorbar);
     }
+
+    @Override
+    protected void initViewPager() {
+        super.initViewPager();
+        IntroductionFragment introductionFragment = new IntroductionFragment();
+        fragments.add(introductionFragment);
+        titles.add("介绍");
+        baseFragmentPagerAdapter.notifyDataSetChanged();
+    }
+
 
 
 }
