@@ -28,7 +28,9 @@ public class RetrofitWapper {
     public static RetrofitWapper getRetrofitWapperInstance() {
         if (mRetrofitWapper == null) {
             synchronized (RetrofitWapper.class) {
-                mRetrofitWapper = new RetrofitWapper();
+                if (mRetrofitWapper == null) {
+                    mRetrofitWapper = new RetrofitWapper();
+                }
             }
         }
         return mRetrofitWapper;
