@@ -18,7 +18,7 @@ import butterknife.BindView;
  * Created by sujian on 2016/7/3.
  * Mail:121116111@qq.com
  */
-public abstract class BaseViewPagerDelegate extends AppDelegate {
+public abstract class BaseViewPagerDelegate extends MenuDelegate {
 
     //viewpager
     @BindView(R.id.viewpager)

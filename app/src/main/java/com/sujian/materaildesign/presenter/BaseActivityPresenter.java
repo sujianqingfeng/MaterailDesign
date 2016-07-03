@@ -1,0 +1,48 @@
+package com.sujian.materaildesign.presenter;
+
+import android.os.Bundle;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.view.View;
+
+import com.sujian.materaildesign.R;
+import com.sujian.materaildesign.frame.presenter.ActivityPresenter;
+import com.sujian.materaildesign.frame.view.AppDelegate;
+import com.sujian.materaildesign.frame.view.IDelegate;
+import com.sujian.materaildesign.uitls.T;
+
+import butterknife.BindView;
+
+/**
+ * Created by sujian on 2016/7/3.
+ * Mail:121116111@qq.com
+ */
+public abstract class BaseActivityPresenter<TT extends AppDelegate> extends ActivityPresenter<TT> {
+
+    @BindView(R.id.dl_main)
+    DrawerLayout dl_main;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        viewDelegate.initWindow();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (dl_main.isDrawerOpen(GravityCompat.START)) {
+            dl_main.closeDrawer(GravityCompat.START);
+        } else {
+            viewDelegate.snackbar("你确定退出程序么？骚年", "确定", new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    finish();
+                    System.exit(0);
+                    android.os.Process.killProcess(android.os.Process.myPid());
+                }
+            });
+        }
+    }
+
+}

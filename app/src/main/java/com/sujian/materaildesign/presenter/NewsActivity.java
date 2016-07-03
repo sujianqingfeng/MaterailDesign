@@ -10,10 +10,11 @@ import com.sujian.materaildesign.frame.presenter.ActivityPresenter;
 /**
  * 新闻presenter
  */
-public class NewsActivity extends ActivityPresenter<NewsDelegate> {
+public class NewsActivity extends BaseActivityPresenter<NewsDelegate> {
 
     @Override
     protected Class<NewsDelegate> getDelegateClass() {
         return NewsDelegate.class;
     }
+
 }

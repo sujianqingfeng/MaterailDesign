@@ -19,12 +19,12 @@
         <item
             android:id="@+id/navigation_sub_item_4"
             android:icon="@mipmap/ic_subscriptions_black_36dp"
-            android:title="视频" />
+            android:title="@string/video" />
 
         <item
             android:id="@+id/navigation_sub_item_5"
             android:icon="@mipmap/ic_fiber_new_black_36dp"
-            android:title="新闻" />
+            android:title="@string/news" />
     </group>
 
     <item android:title="orther">
