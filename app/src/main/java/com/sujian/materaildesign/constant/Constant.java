@@ -10,4 +10,9 @@ public class Constant {
     public static final String ISNIGHT = "is_night";
     //放置信息
     public static final String INFO = "info";
+
+    public static final String BAIDU_BASE_URL = "http://apis.baidu.com/";
+
+    public static final String YIYUAN_BASE_URL = "http://route.showapi.com/";
+
 }

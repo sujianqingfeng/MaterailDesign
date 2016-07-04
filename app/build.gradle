@@ -62,5 +62,7 @@ dependencies {
     compile 'com.f2prateek.rx.preferences:rx-preferences:1.0.2'
     /*分割线*/
     compile 'com.yqritc:recyclerview-flexibledivider:1.4.0'
+    /*视频播放控件*/
+    compile 'fm.jiecao:jiecaovideoplayer:3.6.2'
 
 }

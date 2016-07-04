@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="150dp">
+
+    <ImageView
+        android:id="@+id/iv_video"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_margin="8dp"
+        android:src="@mipmap/ic_launcher" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_video"
+        android:padding="1dp"
+        android:layout_margin="3dp"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        android:layout_alignParentBottom="true"
+        android:background="#20000000"
+        android:text="标题标题标题标题" />
+
+</RelativeLayout>

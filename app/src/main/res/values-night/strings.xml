@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MaterailDesign</string>
+    <string name="app_name">素笺</string>
     <string name="drawer_open">drawer_open</string>
     <string name="drawer_close">drawer_close</string>
     <string name="home">主页</string>

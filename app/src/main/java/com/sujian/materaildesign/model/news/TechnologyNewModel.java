@@ -1,5 +1,6 @@
 package com.sujian.materaildesign.model.news;
 
+import com.sujian.materaildesign.constant.Constant;
 import com.sujian.materaildesign.uitls.RetrofitWapper;
 
 import rx.Scheduler;
@@ -15,7 +16,7 @@ import rx.schedulers.Schedulers;
 public class TechnologyNewModel implements ITechnologyNewModel {
     @Override
     public void getTechnologyNew(int n, int p, Subscriber<NewEntity> subscriber) {
-        TechnologyNewApi technologyNewApi = RetrofitWapper.getRetrofitWapperInstance().create(TechnologyNewApi.class);
+        TechnologyNewApi technologyNewApi = RetrofitWapper.getRetrofitWapperInstance(Constant.BAIDU_BASE_URL).create(TechnologyNewApi.class);
         technologyNewApi.getTechnologyNew(n, p)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

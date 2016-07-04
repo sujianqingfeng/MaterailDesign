@@ -20,6 +20,7 @@ import com.sujian.materaildesign.presenter.MainActivity;
 import com.sujian.materaildesign.presenter.MusicActivity;
 import com.sujian.materaildesign.presenter.NewsActivity;
 import com.sujian.materaildesign.presenter.PictureActivity;
+import com.sujian.materaildesign.presenter.VideoActivity;
 import com.sujian.materaildesign.uitls.ActivityFragmentInject;
 
 import butterknife.BindView;
@@ -116,7 +117,7 @@ public abstract class MenuDelegate extends AppDelegate {
                         break;
 
                     case R.id.navigation_sub_item_4:
-
+                        mClass = VideoActivity.class;
                         break;
 
                     case R.id.navigation_sub_item_5:

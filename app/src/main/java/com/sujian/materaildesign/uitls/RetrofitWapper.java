@@ -13,11 +13,14 @@ public class RetrofitWapper {
     private static RetrofitWapper mRetrofitWapper;
     private Retrofit mRetrofit;
 
+    private RetrofitWapper() {
+    }
+
     /**
      * 将构造函数私有化
      */
-    private RetrofitWapper() {
-        mRetrofit = new Retrofit.Builder().baseUrl(Constant.BASE_URL).addConverterFactory(GsonConverterFactory.create()).addCallAdapterFactory(RxJavaCallAdapterFactory.create()).build();
+    private RetrofitWapper(String url) {
+        mRetrofit = new Retrofit.Builder().baseUrl(url).addConverterFactory(GsonConverterFactory.create()).addCallAdapterFactory(RxJavaCallAdapterFactory.create()).build();
     }
 
     /**
@@ -25,11 +28,11 @@ public class RetrofitWapper {
      *
      * @return
      */
-    public static RetrofitWapper getRetrofitWapperInstance() {
+    public static RetrofitWapper getRetrofitWapperInstance(String url) {
         if (mRetrofitWapper == null) {
             synchronized (RetrofitWapper.class) {
                 if (mRetrofitWapper == null) {
-                    mRetrofitWapper = new RetrofitWapper();
+                    mRetrofitWapper = new RetrofitWapper(url);
                 }
             }
         }
@@ -47,9 +50,5 @@ public class RetrofitWapper {
         return mRetrofit.create(service);
     }
 
-
-    public class Constant {
-        public static final String BASE_URL = "http://apis.baidu.com/";
-    }
 
 }

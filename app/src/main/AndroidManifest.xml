@@ -32,6 +32,8 @@
             android:name=".presenter.MusicActivity"
             android:theme="@style/Music" />
         <activity android:name=".presenter.NewsActivity" />
+        <activity android:name=".presenter.VideoActivity" />
+        <activity android:name=".presenter.VideoPlayerActivity"></activity>
     </application>
 
 </manifest>
