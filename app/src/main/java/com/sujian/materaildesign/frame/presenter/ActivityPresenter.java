@@ -21,6 +21,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 
 import com.sujian.materaildesign.frame.view.IDelegate;
+import com.sujian.materaildesign.uitls.MyActivityManager;
 
 import butterknife.ButterKnife;
 
@@ -51,6 +52,7 @@ public abstract class ActivityPresenter<T extends IDelegate> extends AppCompatAc
         viewDelegate.create(getLayoutInflater(), null, savedInstanceState);
         setContentView(viewDelegate.getRootView());
         ButterKnife.bind(this);
+        MyActivityManager.getMyActivityManager().addActivity(this);
         initToolbar();
         viewDelegate.initWidget();
         initView();

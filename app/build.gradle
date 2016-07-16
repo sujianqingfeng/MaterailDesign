@@ -64,5 +64,6 @@ dependencies {
     compile 'com.yqritc:recyclerview-flexibledivider:1.4.0'
     /*视频播放控件*/
     compile 'fm.jiecao:jiecaovideoplayer:3.6.2'
-
+    /*音乐播放控件*/
+    compile 'com.github.iammert:MusicPlayerView:e3b937c729'
 }

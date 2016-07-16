@@ -9,6 +9,7 @@ import com.sujian.materaildesign.R;
 import com.sujian.materaildesign.frame.presenter.ActivityPresenter;
 import com.sujian.materaildesign.frame.view.AppDelegate;
 import com.sujian.materaildesign.frame.view.IDelegate;
+import com.sujian.materaildesign.uitls.MyActivityManager;
 import com.sujian.materaildesign.uitls.T;
 
 import butterknife.BindView;
@@ -37,9 +38,7 @@ public abstract class BaseActivityPresenter<TT extends AppDelegate> extends Acti
             viewDelegate.snackbar("你确定退出程序么？骚年", "确定", new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    finish();
-                    System.exit(0);
-                    android.os.Process.killProcess(android.os.Process.myPid());
+                    MyActivityManager.AppExit(BaseActivityPresenter.this);
                 }
             });
         }

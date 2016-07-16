@@ -20,6 +20,7 @@ import com.sujian.materaildesign.delegate.MusicDalegale;
 import com.sujian.materaildesign.frame.presenter.ActivityPresenter;
 
 import butterknife.BindView;
+import co.mobiwise.library.MusicPlayerView;
 
 /**
  * 音乐presenter
@@ -29,6 +30,9 @@ public class MusicActivity extends ActivityPresenter<MusicDalegale> {
     @BindView(R.id.tb_music)
     Toolbar tb_music;
 
+    @BindView(R.id.mpv)
+    MusicPlayerView mpv;
+
     private SearchView searchView;
     //宽度
     private int searchWidth;
@@ -37,6 +41,12 @@ public class MusicActivity extends ActivityPresenter<MusicDalegale> {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         viewDelegate.initWindow();
+    }
+
+    @Override
+    protected void initData() {
+        super.initData();
+        mpv.setCoverURL("http://i.gtimg.cn/music/photo/mid_album_300/2/5/001xdVLB17WQ25.jpg");
     }
 
     @Override

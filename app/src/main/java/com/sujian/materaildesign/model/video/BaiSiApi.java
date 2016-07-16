@@ -13,4 +13,3 @@ public interface BaiSiApi {
     Observable<BaiSiEntity> getBaiSi(@Query("page") int p);
 
 }
-//http://route.showapi.com/255-1?showapi_appid=myappid&type=&title=&page=&showapi_sign=mysecret
