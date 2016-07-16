@@ -66,4 +66,8 @@ dependencies {
     compile 'fm.jiecao:jiecaovideoplayer:3.6.2'
     /*音乐播放控件*/
     compile 'com.github.iammert:MusicPlayerView:e3b937c729'
+
+    compile('com.hwangjr.rxbus:rxbus:1.0.4') {
+        exclude group: 'com.jakewharton.timber', module: 'timber'
+    }
 }

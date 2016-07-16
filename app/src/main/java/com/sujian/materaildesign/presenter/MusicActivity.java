@@ -1,6 +1,7 @@
 package com.sujian.materaildesign.presenter;
 
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.PersistableBundle;
@@ -14,12 +15,21 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.hwangjr.rxbus.RxBus;
 import com.orhanobut.logger.Logger;
 import com.sujian.materaildesign.R;
 import com.sujian.materaildesign.delegate.MusicDalegale;
 import com.sujian.materaildesign.frame.presenter.ActivityPresenter;
+import com.sujian.materaildesign.model.music.Song;
+import com.sujian.materaildesign.player.PlayEvent;
+import com.sujian.materaildesign.player.PlayerService;
+
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import co.mobiwise.library.MusicPlayerView;
 
 /**
@@ -37,6 +47,8 @@ public class MusicActivity extends ActivityPresenter<MusicDalegale> {
     //宽度
     private int searchWidth;
 
+    private PlayEvent playEvent;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +59,7 @@ public class MusicActivity extends ActivityPresenter<MusicDalegale> {
     protected void initData() {
         super.initData();
         mpv.setCoverURL("http://i.gtimg.cn/music/photo/mid_album_300/2/5/001xdVLB17WQ25.jpg");
+        startService(new Intent(MusicActivity.this, PlayerService.class));
     }
 
     @Override
@@ -100,6 +113,31 @@ public class MusicActivity extends ActivityPresenter<MusicDalegale> {
 
     }
 
+    @OnClick({R.id.mpv})
+    public void play(View view) {
+        playEvent = new PlayEvent();
+        if (mpv.isRotating()) {
+            playEvent.setAction(PlayEvent.Action.STOP);
+            RxBus.get().post(playEvent);
+            mpv.stop();
+            mpv.setAutoProgress(false);
+        } else {
+            List<Song> queue = new ArrayList<>();
+            queue.add(getSong("http://yinyueshiting.baidu.com/data2/music/42783748/42783748.mp3?xcode=75e4092fcad98623afe7b73b41f866fe"));
+            playEvent.setAction(PlayEvent.Action.PLAY);
+            playEvent.setQueue(queue);
+            RxBus.get().post(playEvent);
+            mpv.start();
+            mpv.setAutoProgress(true);
+        }
+
+    }
+
+    private Song getSong(String url) {
+        Song song = new Song();
+        song.setPath(url);
+        return song;
+    }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {

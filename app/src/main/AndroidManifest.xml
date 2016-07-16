@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:name=".application.MyApplication"
@@ -34,6 +35,11 @@
         <activity android:name=".presenter.NewsActivity" />
         <activity android:name=".presenter.VideoActivity" />
         <activity android:name=".presenter.VideoPlayerActivity"></activity>
+
+        <service
+            android:name=".player.PlayerService"
+            android:enabled="true"
+            android:exported="false" />
     </application>
 
 </manifest>
