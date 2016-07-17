@@ -56,16 +56,61 @@ public class MusicActivity extends ActivityPresenter<MusicDalegale> {
     }
 
     @Override
+    protected Class<MusicDalegale> getDelegateClass() {
+        return MusicDalegale.class;
+    }
+
+    @Override
     protected void initData() {
         super.initData();
         mpv.setCoverURL("http://i.gtimg.cn/music/photo/mid_album_300/2/5/001xdVLB17WQ25.jpg");
         startService(new Intent(MusicActivity.this, PlayerService.class));
+
+        getDataFromActivity();
     }
 
-    @Override
-    protected Class<MusicDalegale> getDelegateClass() {
-        return MusicDalegale.class;
+    private void getDataFromActivity() {
+        Bundle extras = getIntent().getExtras();
+        String path = extras.getString("path");
+        Logger.e(path);
+        playEvent = new PlayEvent();
+        List<Song> queue = new ArrayList<>();
+        queue.add(getSong(path));
+        playEvent.setAction(PlayEvent.Action.PLAY);
+        playEvent.setQueue(queue);
+        mpv.start();
+        mpv.setAutoProgress(true);
+        RxBus.get().post(playEvent);
     }
+
+
+
+
+
+    @OnClick({R.id.mpv})
+    public void play(View view) {
+        playEvent = new PlayEvent();
+        if (mpv.isRotating()) {
+            playEvent.setAction(PlayEvent.Action.STOP);
+            mpv.stop();
+            mpv.setAutoProgress(false);
+        } else {
+            List<Song> queue = new ArrayList<>();
+            queue.add(getSong("http://yinyueshiting.baidu.com/data2/music/42783748/42783748.mp3?xcode=75e4092fcad98623afe7b73b41f866fe"));
+            playEvent.setAction(PlayEvent.Action.PLAY);
+            playEvent.setQueue(queue);
+            mpv.start();
+            mpv.setAutoProgress(true);
+        }
+        RxBus.get().post(playEvent);
+    }
+
+    private Song getSong(String url) {
+        Song song = new Song();
+        song.setPath(url);
+        return song;
+    }
+
 
     @Override
     protected void initToolbar() {
@@ -111,32 +156,6 @@ public class MusicActivity extends ActivityPresenter<MusicDalegale> {
             }
         });
 
-    }
-
-    @OnClick({R.id.mpv})
-    public void play(View view) {
-        playEvent = new PlayEvent();
-        if (mpv.isRotating()) {
-            playEvent.setAction(PlayEvent.Action.STOP);
-            RxBus.get().post(playEvent);
-            mpv.stop();
-            mpv.setAutoProgress(false);
-        } else {
-            List<Song> queue = new ArrayList<>();
-            queue.add(getSong("http://yinyueshiting.baidu.com/data2/music/42783748/42783748.mp3?xcode=75e4092fcad98623afe7b73b41f866fe"));
-            playEvent.setAction(PlayEvent.Action.PLAY);
-            playEvent.setQueue(queue);
-            RxBus.get().post(playEvent);
-            mpv.start();
-            mpv.setAutoProgress(true);
-        }
-
-    }
-
-    private Song getSong(String url) {
-        Song song = new Song();
-        song.setPath(url);
-        return song;
     }
 
     @Override

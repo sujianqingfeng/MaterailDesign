@@ -18,6 +18,7 @@ import com.sujian.materaildesign.constant.Constant;
 import com.sujian.materaildesign.frame.view.AppDelegate;
 import com.sujian.materaildesign.presenter.MainActivity;
 import com.sujian.materaildesign.presenter.MusicActivity;
+import com.sujian.materaildesign.presenter.MusicListActivity;
 import com.sujian.materaildesign.presenter.NewsActivity;
 import com.sujian.materaildesign.presenter.PictureActivity;
 import com.sujian.materaildesign.presenter.VideoActivity;
@@ -28,6 +29,7 @@ import rx.functions.Action1;
 
 
 /**
+ * 菜单view
  * Created by sujian on 2016/7/3.
  * Mail:121116111@qq.com
  */
@@ -113,7 +115,7 @@ public abstract class MenuDelegate extends AppDelegate {
                         mClass = PictureActivity.class;
                         break;
                     case R.id.navigation_sub_item_3:
-                        mClass = MusicActivity.class;
+                        mClass = MusicListActivity.class;
                         break;
 
                     case R.id.navigation_sub_item_4:

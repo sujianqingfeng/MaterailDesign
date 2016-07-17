@@ -100,8 +100,9 @@ public abstract class AppDelegate implements IDelegate {
         Snackbar.make(rootView, msg, Snackbar.LENGTH_SHORT).show();
     }
 
-    public void snackbar(CharSequence msg, String actionMsg, View.OnClickListener listener) {
-        Snackbar.make(rootView, msg, Snackbar.LENGTH_SHORT)
+
+    public void snackbar(View view, CharSequence msg, String actionMsg, View.OnClickListener listener) {
+        Snackbar.make(view, msg, Snackbar.LENGTH_SHORT)
                 .setAction(actionMsg, listener)
                 .setDuration(3000)
                 .show();

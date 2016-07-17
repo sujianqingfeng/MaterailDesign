@@ -10,6 +10,7 @@ import com.sujian.materaildesign.presenter.TechnologyFragment;
 import com.sujian.materaildesign.uitls.ActivityFragmentInject;
 
 /**
+ * 视频列表view
  * Created by sujian on 2016/6/11.
  * Mail:121116111@qq.com
  */
