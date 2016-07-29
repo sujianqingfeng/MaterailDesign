@@ -13,6 +13,7 @@ import android.widget.RelativeLayout;
 
 import com.sujian.materaildesign.R;
 import com.sujian.materaildesign.frame.view.AppDelegate;
+import com.sujian.materaildesign.player.MusicPlayer;
 import com.sujian.materaildesign.presenter.MusicActivity;
 
 import net.qiujuer.genius.blur.StackBlur;
@@ -46,7 +47,8 @@ public class MusicDalegale extends AppDelegate {
 
     @Override
     public Toolbar getToolbar() {
-        tb_music.setTitle("年轻的战场");
+
+        //tb_music.setTitle(MusicPlayer.getMusicPlayer().getNowPlaying().getTitle());
         return super.getToolbar();
     }
 

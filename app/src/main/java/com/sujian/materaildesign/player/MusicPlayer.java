@@ -18,7 +18,7 @@ import java.util.Random;
  */
 public class MusicPlayer implements MediaPlayer.OnCompletionListener {
 
-    private static MusicPlayer musicPlayer = new MusicPlayer();
+    private static MusicPlayer musicPlayer;
     private List<Song> mQueue;
     private int mQueueIndex;
     private ManagedMediaPlayer managedMediaPlayer;
@@ -31,7 +31,7 @@ public class MusicPlayer implements MediaPlayer.OnCompletionListener {
     }
 
     //初始化
-    public MusicPlayer() {
+    private MusicPlayer() {
         mQueue = new ArrayList<>();
         mQueueIndex = 0;
         managedMediaPlayer = new ManagedMediaPlayer();
@@ -46,6 +46,7 @@ public class MusicPlayer implements MediaPlayer.OnCompletionListener {
      * @param index
      */
     public void setQueue(List<Song> queue, int index) {
+        Logger.e("播放队列为" + queue + "播放索引为" + index);
         mQueue = queue;
         mQueueIndex = index;
         play(getNowPlaying());
@@ -112,7 +113,8 @@ public class MusicPlayer implements MediaPlayer.OnCompletionListener {
      * @return
      */
     public Song getNowPlaying() {
-        if (mQueue == null)
+        Logger.e("队列" + (mQueue == null) + "index---" + mQueueIndex);
+        if (mQueue == null || mQueue.size() == 0)
             return null;
         return mQueue.get(mQueueIndex);
     }
@@ -183,18 +185,21 @@ public class MusicPlayer implements MediaPlayer.OnCompletionListener {
 
     //得到下一首的索引
     private int getNextIndex() {
+        if (mQueue != null && mQueue.size() != 0)
         mQueueIndex = (mQueueIndex + 1) % mQueue.size();
         return mQueueIndex;
     }
 
     //得到上一首的索引
     private int getPreviousIndex() {
+        if (mQueue != null && mQueue.size() != 0)
         mQueueIndex = (mQueueIndex - 1) % mQueue.size();
         return mQueueIndex;
     }
 
     //得到随机索引
     private int getRandomIndex() {
+        if (mQueue != null && mQueue.size() != 0)
         mQueueIndex = new Random().nextInt(mQueue.size()) % mQueue.size();
         return mQueueIndex;
     }
@@ -206,6 +211,10 @@ public class MusicPlayer implements MediaPlayer.OnCompletionListener {
         next();
     }
 
+    public boolean isPlaying() {
+        return managedMediaPlayer.isPlaying();
+    }
+
     /**
      * 释放资源
      */
@@ -215,12 +224,18 @@ public class MusicPlayer implements MediaPlayer.OnCompletionListener {
     }
 
     public static MusicPlayer getMusicPlayer() {
+        if (musicPlayer == null) {
+            synchronized (MusicPlayer.class) {
+                if (musicPlayer == null) {
+                    musicPlayer = new MusicPlayer();
+                }
+            }
+
+        }
         return musicPlayer;
     }
 
-    public static void setMusicPlayer(MusicPlayer musicPlayer) {
-        MusicPlayer.musicPlayer = musicPlayer;
-    }
+
 
     public PlayerMode getPlayerMode() {
         return playerMode;
@@ -229,4 +244,6 @@ public class MusicPlayer implements MediaPlayer.OnCompletionListener {
     public void setPlayerMode(PlayerMode playerMode) {
         this.playerMode = playerMode;
     }
+
+
 }

@@ -1,18 +1,18 @@
 package com.sujian.materaildesign.presenter;
 
-import android.content.Intent;
 import android.view.View;
 
+import com.hwangjr.rxbus.RxBus;
 import com.orhanobut.logger.Logger;
 import com.sujian.materaildesign.adapter.BaseRecylerViewAdapter;
-import com.sujian.materaildesign.adapter.LocalMusicAdapter;
-import com.sujian.materaildesign.adapter.LocalMusicHolder$$ViewBinder;
 import com.sujian.materaildesign.delegate.LocalMusicFDeletate;
 import com.sujian.materaildesign.frame.presenter.FragmentPresenter;
 import com.sujian.materaildesign.model.music.ILocalMusicModel;
 import com.sujian.materaildesign.model.music.LocalMusicModel;
 import com.sujian.materaildesign.model.music.Song;
+import com.sujian.materaildesign.player.PlayEvent;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -39,10 +39,13 @@ public class LocalMusicFragment extends FragmentPresenter<LocalMusicFDeletate> {
         viewDelegate.getAdapter().setOnItemClickListener(new BaseRecylerViewAdapter.OnRecyclerViewItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-
-                Intent intent = new Intent(getActivity(), MusicActivity.class);
-                intent.putExtra("path", viewDelegate.getList().get(position).getPath());
-                startActivity(intent);
+                Logger.e("这里好像没有执行");
+                Logger.e("点击位置----" + position);
+                PlayEvent playEvent = new PlayEvent();
+                playEvent.setSeekTo(position);
+                playEvent.setAction(PlayEvent.Action.PLAY);
+                playEvent.setQueue(viewDelegate.getList());
+                RxBus.get().post(playEvent);
             }
         });
     }

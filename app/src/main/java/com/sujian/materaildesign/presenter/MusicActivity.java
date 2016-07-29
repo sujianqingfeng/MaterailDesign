@@ -21,6 +21,7 @@ import com.sujian.materaildesign.R;
 import com.sujian.materaildesign.delegate.MusicDalegale;
 import com.sujian.materaildesign.frame.presenter.ActivityPresenter;
 import com.sujian.materaildesign.model.music.Song;
+import com.sujian.materaildesign.player.MusicPlayer;
 import com.sujian.materaildesign.player.PlayEvent;
 import com.sujian.materaildesign.player.PlayerService;
 
@@ -47,7 +48,7 @@ public class MusicActivity extends ActivityPresenter<MusicDalegale> {
     //宽度
     private int searchWidth;
 
-    private PlayEvent playEvent;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,56 +61,42 @@ public class MusicActivity extends ActivityPresenter<MusicDalegale> {
         return MusicDalegale.class;
     }
 
+
     @Override
-    protected void initData() {
-        super.initData();
-        mpv.setCoverURL("http://i.gtimg.cn/music/photo/mid_album_300/2/5/001xdVLB17WQ25.jpg");
-        startService(new Intent(MusicActivity.this, PlayerService.class));
-
-        getDataFromActivity();
+    protected void initView() {
+        Logger.e("---------------------===------");
+        initMpv();
     }
 
-    private void getDataFromActivity() {
-        Bundle extras = getIntent().getExtras();
-        String path = extras.getString("path");
-        Logger.e(path);
-        playEvent = new PlayEvent();
-        List<Song> queue = new ArrayList<>();
-        queue.add(getSong(path));
-        playEvent.setAction(PlayEvent.Action.PLAY);
-        playEvent.setQueue(queue);
-        mpv.start();
-        mpv.setAutoProgress(true);
-        RxBus.get().post(playEvent);
+    private void initMpv() {
+        MusicPlayer musicPlayer = MusicPlayer.getMusicPlayer();
+        tb_music.setTitle(musicPlayer.getNowPlaying() != null ? musicPlayer.getNowPlaying().getTitle() : "");
+        if (musicPlayer.isPlaying()) {
+            Logger.e("播放中");
+            mpv.setCoverURL("http://i.gtimg.cn/music/photo/mid_album_300/2/5/001xdVLB17WQ25.jpg");
+            mpv.setMax(musicPlayer.getDuration());
+            mpv.setProgress(musicPlayer.getCurrentPosition());
+            mpv.start();
+        } else {
+            Logger.e("未播放");
+        }
     }
-
-
-
-
 
     @OnClick({R.id.mpv})
     public void play(View view) {
-        playEvent = new PlayEvent();
+        PlayEvent playEvent = new PlayEvent();
         if (mpv.isRotating()) {
             playEvent.setAction(PlayEvent.Action.STOP);
             mpv.stop();
             mpv.setAutoProgress(false);
         } else {
-            List<Song> queue = new ArrayList<>();
-            queue.add(getSong("http://yinyueshiting.baidu.com/data2/music/42783748/42783748.mp3?xcode=75e4092fcad98623afe7b73b41f866fe"));
-            playEvent.setAction(PlayEvent.Action.PLAY);
-            playEvent.setQueue(queue);
+            playEvent.setAction(PlayEvent.Action.RESUME);
             mpv.start();
             mpv.setAutoProgress(true);
         }
-        RxBus.get().post(playEvent);
+        // RxBus.get().post(playEvent);
     }
 
-    private Song getSong(String url) {
-        Song song = new Song();
-        song.setPath(url);
-        return song;
-    }
 
 
     @Override

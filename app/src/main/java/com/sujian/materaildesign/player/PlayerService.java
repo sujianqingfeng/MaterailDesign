@@ -30,18 +30,21 @@ public class PlayerService extends Service {
 
     @Subscribe
     public void event(PlayEvent playEvent) {
-        Logger.e("事件进入");
+        MusicPlayer musicPlayer = MusicPlayer.getMusicPlayer();
         switch (playEvent.getAction()) {
             case PLAY:
-                Logger.e("开始播放");
-                MusicPlayer.getMusicPlayer().setQueue(playEvent.getQueue(), 0);
+                Logger.e("开始播放 seekto" + playEvent.getSeekTo());
+                musicPlayer.setQueue(playEvent.getQueue(), playEvent.getSeekTo());
                 break;
             case NEXT:
-                MusicPlayer.getMusicPlayer().next();
+                musicPlayer.next();
                 break;
 
             case STOP:
-                MusicPlayer.getMusicPlayer().pause();
+                musicPlayer.pause();
+                break;
+            case RESUME:
+                musicPlayer.resume();
                 break;
         }
     }
