@@ -41,7 +41,8 @@
             android:enabled="true"
             android:exported="false" />
 
-        <activity android:name=".presenter.MusicListActivity"></activity>
+        <activity android:name=".presenter.MusicListActivity" />
+        <activity android:name=".presenter.NetworkSongListActivity"></activity>
     </application>
 
 </manifest>

@@ -43,7 +43,6 @@ public abstract class MenuDelegate extends AppDelegate {
     @BindView(R.id.main_toorbar)
     Toolbar main_toorbar;
 
-    protected Class mClass;
     protected int mMenuDefaultCheckedItem;
     protected int mToolbarTitle;
 
@@ -106,7 +105,7 @@ public abstract class MenuDelegate extends AppDelegate {
         nv_menu.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {
-                mClass = null;
+                Class mClass = null;
                 switch (item.getItemId()) {
                     case R.id.navigation_sub_item_1:
                         mClass = MainActivity.class;
@@ -173,6 +172,7 @@ public abstract class MenuDelegate extends AppDelegate {
             intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             getActivity().startActivity(intent);
             getActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+            getActivity().finish();
         }
     }
 

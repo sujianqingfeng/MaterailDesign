@@ -15,4 +15,8 @@ public class Constant {
 
     public static final String YIYUAN_BASE_URL = "http://route.showapi.com/";
 
+    public static final String MUSIC_BASE_URL = "http://tingapi.ting.baidu.com/";
+
+    public static final Integer[] MUSIC_TYPE = new Integer[]{1, 2, 11, 21, 22, 23, 24, 25};
+
 }

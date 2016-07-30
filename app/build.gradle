@@ -71,4 +71,6 @@ dependencies {
         exclude group: 'com.jakewharton.timber', module: 'timber'
     }
 
+    compile 'com.github.linger1216:labelview:v1.1.0'
+
 }

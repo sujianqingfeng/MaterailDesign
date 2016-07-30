@@ -12,7 +12,6 @@ import com.sujian.materaildesign.model.music.LocalMusicModel;
 import com.sujian.materaildesign.model.music.Song;
 import com.sujian.materaildesign.player.PlayEvent;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

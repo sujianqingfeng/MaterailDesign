@@ -1,6 +1,13 @@
 package com.sujian.materaildesign;
 
+import com.orhanobut.logger.Logger;
+import com.sujian.materaildesign.model.music.INetworkMusicModel;
+import com.sujian.materaildesign.model.music.LinkSongList;
+import com.sujian.materaildesign.model.music.NetworkMusicModel;
+
 import org.junit.Test;
+
+import rx.Subscriber;
 
 import static org.junit.Assert.*;
 
@@ -12,6 +19,22 @@ import static org.junit.Assert.*;
 public class ExampleUnitTest {
     @Test
     public void addition_isCorrect() throws Exception {
-        assertEquals(4, 2 + 2);
+        INetworkMusicModel iNetworkMusicModel = new NetworkMusicModel();
+        iNetworkMusicModel.getLinkSongList(1, 10, new Subscriber<LinkSongList>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                Logger.e("shibai");
+            }
+
+            @Override
+            public void onNext(LinkSongList linkSongList) {
+                Logger.e(linkSongList.toString());
+            }
+        });
     }
 }

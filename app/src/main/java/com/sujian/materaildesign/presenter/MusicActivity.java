@@ -1,33 +1,18 @@
 package com.sujian.materaildesign.presenter;
 
-import android.annotation.TargetApi;
-import android.content.Intent;
-import android.graphics.Color;
-import android.os.Build;
-import android.os.PersistableBundle;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.view.ContextMenu;
 import android.view.KeyEvent;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.hwangjr.rxbus.RxBus;
 import com.orhanobut.logger.Logger;
 import com.sujian.materaildesign.R;
 import com.sujian.materaildesign.delegate.MusicDalegale;
 import com.sujian.materaildesign.frame.presenter.ActivityPresenter;
-import com.sujian.materaildesign.model.music.Song;
 import com.sujian.materaildesign.player.MusicPlayer;
 import com.sujian.materaildesign.player.PlayEvent;
-import com.sujian.materaildesign.player.PlayerService;
-
-
-import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
