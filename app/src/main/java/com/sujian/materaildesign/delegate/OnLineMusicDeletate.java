@@ -8,6 +8,7 @@ import com.sujian.materaildesign.adapter.BillboardAdapter;
 import com.sujian.materaildesign.frame.view.AppDelegate;
 import com.sujian.materaildesign.model.music.Billboard;
 import com.sujian.materaildesign.presenter.MusicListActivity;
+import com.sujian.materaildesign.wiget.SpaceItemDecoration;
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
 import java.util.ArrayList;
@@ -55,13 +56,8 @@ public class OnLineMusicDeletate extends AppDelegate {
 
         adapter = new BillboardAdapter(list, activity);
         rv_billboard.setAdapter(adapter);
+        rv_billboard.addItemDecoration(new SpaceItemDecoration(12));
 
-        rv_billboard.addItemDecoration(
-                new HorizontalDividerItemDecoration.Builder(activity)
-                        .color(R.color.divider)
-                        .sizeResId(R.dimen.divider)
-                        .marginResId(R.dimen.leftmargin, R.dimen.rightmargin)
-                        .build());
 
     }
 

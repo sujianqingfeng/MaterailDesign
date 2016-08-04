@@ -11,6 +11,7 @@ import com.sujian.materaildesign.adapter.NewRecyclerViewAdapter;
 import com.sujian.materaildesign.frame.view.AppDelegate;
 import com.sujian.materaildesign.model.news.NewEntity;
 import com.sujian.materaildesign.presenter.NewsActivity;
+import com.sujian.materaildesign.wiget.SpaceItemDecoration;
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
 import java.util.ArrayList;
@@ -60,12 +61,8 @@ public class TechnologyFDelegate extends AppDelegate {
         rv_technology.setLayoutManager(linearLayoutManger);
         adapter = new NewRecyclerViewAdapter(newsActivity, list);
         rv_technology.setAdapter(adapter);
-        rv_technology.addItemDecoration(
-                new HorizontalDividerItemDecoration.Builder(newsActivity)
-                        .color(R.color.divider)
-                        .sizeResId(R.dimen.divider)
-                        .marginResId(R.dimen.leftmargin, R.dimen.rightmargin)
-                        .build());
+        rv_technology.addItemDecoration(new SpaceItemDecoration(12));
+
 
         srl_technology.setRefreshing(true);
     }

@@ -11,6 +11,7 @@ import com.sujian.materaildesign.model.music.Song;
 import com.sujian.materaildesign.model.news.NewEntity;
 import com.sujian.materaildesign.presenter.MusicListActivity;
 import com.sujian.materaildesign.presenter.NewsActivity;
+import com.sujian.materaildesign.wiget.SpaceItemDecoration;
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
 import java.util.ArrayList;
@@ -55,12 +56,8 @@ public class LocalMusicFDeletate extends AppDelegate {
         rv_localmusic.setLayoutManager(linearLayoutManger);
         adapter = new LocalMusicAdapter(list);
         rv_localmusic.setAdapter(adapter);
-        rv_localmusic.addItemDecoration(
-                new HorizontalDividerItemDecoration.Builder(musicListActivity)
-                        .color(R.color.divider)
-                        .sizeResId(R.dimen.divider)
-                        .marginResId(R.dimen.leftmargin, R.dimen.rightmargin)
-                        .build());
+        rv_localmusic.addItemDecoration(new SpaceItemDecoration(12));
+
 
     }
 

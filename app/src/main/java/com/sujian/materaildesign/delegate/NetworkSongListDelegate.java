@@ -13,6 +13,7 @@ import com.sujian.materaildesign.frame.view.AppDelegate;
 import com.sujian.materaildesign.model.music.Billboard;
 import com.sujian.materaildesign.model.music.LinkSongList;
 import com.sujian.materaildesign.presenter.NetworkSongListActivity;
+import com.sujian.materaildesign.wiget.SpaceItemDecoration;
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
 import java.util.ArrayList;
@@ -75,12 +76,8 @@ public class NetworkSongListDelegate extends AppDelegate {
         adapter = new NetworkListSongAdapter(list);
         rv_network.setAdapter(adapter);
 
-        rv_network.addItemDecoration(
-                new HorizontalDividerItemDecoration.Builder(activity)
-                        .color(R.color.divider)
-                        .sizeResId(R.dimen.divider)
-                        .marginResId(R.dimen.leftmargin, R.dimen.rightmargin)
-                        .build());
+        rv_network.addItemDecoration(new SpaceItemDecoration(12));
+
 
     }
 

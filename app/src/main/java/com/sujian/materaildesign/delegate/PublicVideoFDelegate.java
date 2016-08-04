@@ -12,6 +12,7 @@ import com.sujian.materaildesign.model.news.NewEntity;
 import com.sujian.materaildesign.model.video.BaiSiEntity;
 import com.sujian.materaildesign.presenter.NewsActivity;
 import com.sujian.materaildesign.presenter.VideoActivity;
+import com.sujian.materaildesign.wiget.SpaceItemDecoration;
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
 import java.util.ArrayList;
@@ -61,12 +62,13 @@ public class PublicVideoFDelegate extends AppDelegate {
         recyclerView.setLayoutManager(linearLayoutManger);
         adapter = new VideoRecyclerViewAdapter(videoActivity, list);
         recyclerView.setAdapter(adapter);
-        recyclerView.addItemDecoration(
-                new HorizontalDividerItemDecoration.Builder(videoActivity)
-                        .color(R.color.divider)
-                        .sizeResId(R.dimen.divider)
-                        .marginResId(R.dimen.leftmargin, R.dimen.rightmargin)
-                        .build());
+        recyclerView.addItemDecoration(new SpaceItemDecoration(12));
+//        recyclerView.addItemDecoration(
+//                new HorizontalDividerItemDecoration.Builder(videoActivity)
+//                        .color(R.color.divider)
+//                        .sizeResId(R.dimen.divider)
+//                        .marginResId(R.dimen.leftmargin, R.dimen.rightmargin)
+//                        .build());
 
         swipeRefreshLayout.setRefreshing(true);
     }
