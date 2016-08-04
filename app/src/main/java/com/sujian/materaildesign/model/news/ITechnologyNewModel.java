@@ -9,4 +9,6 @@ import rx.Subscriber;
  */
 public interface ITechnologyNewModel {
     void getTechnologyNew(int n, int p, Subscriber<NewEntity> subscriber);
+
+    void unsubscribe();
 }

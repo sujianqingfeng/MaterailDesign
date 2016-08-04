@@ -5,17 +5,23 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.google.gson.Gson;
 import com.orhanobut.logger.Logger;
 import com.sujian.materaildesign.R;
 import com.sujian.materaildesign.adapter.NewRecyclerViewAdapter;
+import com.sujian.materaildesign.constant.Constant;
 import com.sujian.materaildesign.delegate.TechnologyFDelegate;
 import com.sujian.materaildesign.frame.presenter.FragmentPresenter;
 import com.sujian.materaildesign.model.news.ITechnologyNewModel;
 import com.sujian.materaildesign.model.news.NewEntity;
+import com.sujian.materaildesign.model.news.TechnologyNewApi;
 import com.sujian.materaildesign.model.news.TechnologyNewModel;
+import com.sujian.materaildesign.uitls.RetrofitWapper;
 
 import butterknife.BindView;
 import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * 科技
@@ -30,7 +36,7 @@ public class TechnologyFragment extends FragmentPresenter<TechnologyFDelegate> {
     @BindView(R.id.srl_technology)
     SwipeRefreshLayout srl_technology;
 
-    private ITechnologyNewModel technologyNewMOdel = new TechnologyNewModel();
+    private ITechnologyNewModel technologyNewMOdel;
 
     private int page = 1;
 
@@ -93,6 +99,8 @@ public class TechnologyFragment extends FragmentPresenter<TechnologyFDelegate> {
     }
 
     private void getTechnologyNewFromService() {
+        Logger.e("开始获取新闻数据");
+        technologyNewMOdel = new TechnologyNewModel();
         technologyNewMOdel.getTechnologyNew(10, page, new Subscriber<NewEntity>() {
             @Override
             public void onCompleted() {
@@ -101,7 +109,8 @@ public class TechnologyFragment extends FragmentPresenter<TechnologyFDelegate> {
 
             @Override
             public void onError(Throwable e) {
-
+                Logger.e("获取新闻数据失败");
+                e.printStackTrace();
             }
 
             @Override
@@ -113,5 +122,12 @@ public class TechnologyFragment extends FragmentPresenter<TechnologyFDelegate> {
             }
         });
         page++;
+    }
+
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        technologyNewMOdel.unsubscribe();
     }
 }

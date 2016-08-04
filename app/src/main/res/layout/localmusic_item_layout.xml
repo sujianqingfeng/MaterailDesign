@@ -5,9 +5,12 @@
     android:layout_height="match_parent"
     app:cardCornerRadius="2dp">
 
+    <!--android:background="?android:attr/selectableItemBackground"波纹有边界 系统波纹用此属性-->
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:background="@drawable/ripple_bg">
 
         <TextView
             android:id="@+id/tv_music_item_title"

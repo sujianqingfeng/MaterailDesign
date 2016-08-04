@@ -11,4 +11,6 @@ import rx.Subscriber;
  */
 public interface IBillboardModel {
     void getBillboard(Integer[] types, Subscriber<Billboard> subscriber);
+
+    void unsubscribe();
 }

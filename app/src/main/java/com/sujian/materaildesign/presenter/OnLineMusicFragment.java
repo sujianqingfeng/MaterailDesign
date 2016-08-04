@@ -21,7 +21,7 @@ import rx.Subscriber;
  */
 public class OnLineMusicFragment extends FragmentPresenter<OnLineMusicDeletate> {
 
-    private IBillboardModel billboardModel = new BillboardModel();
+    private IBillboardModel billboardModel;
 
 
     @Override
@@ -56,6 +56,8 @@ public class OnLineMusicFragment extends FragmentPresenter<OnLineMusicDeletate> 
      * 得到数据
      */
     private void getBillboardData() {
+        Logger.e("开始获取榜单数据数据");
+        billboardModel = new BillboardModel();
         billboardModel.getBillboard(Constant.MUSIC_TYPE, new Subscriber<Billboard>() {
             @Override
             public void onCompleted() {
@@ -64,7 +66,8 @@ public class OnLineMusicFragment extends FragmentPresenter<OnLineMusicDeletate> 
 
             @Override
             public void onError(Throwable e) {
-
+                Logger.e("获取榜单数据失败");
+                e.printStackTrace();
             }
 
             @Override
@@ -75,6 +78,9 @@ public class OnLineMusicFragment extends FragmentPresenter<OnLineMusicDeletate> 
         });
     }
 
-
-
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        billboardModel.unsubscribe();
+    }
 }

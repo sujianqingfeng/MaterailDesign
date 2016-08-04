@@ -9,6 +9,7 @@ import java.util.List;
 
 import rx.Observable;
 import rx.Subscriber;
+import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
@@ -18,12 +19,12 @@ import rx.schedulers.Schedulers;
  * Mail:121116111@qq.com
  */
 public class BillboardModel implements IBillboardModel {
-
+    Subscription subscribe;
     @Override
     public void getBillboard(Integer[] types, Subscriber<Billboard> subscriber) {
         final NetworkMusicApi networkMusicApi = RetrofitWapper.getRetrofitWapperInstance(Constant.MUSIC_BASE_URL).create(NetworkMusicApi.class);
 
-        Observable.from(types)
+        subscribe = Observable.from(types)
                 .flatMap(new Func1<Integer, Observable<LinkSongList>>() {
                     @Override
                     public Observable<LinkSongList> call(Integer integer) {
@@ -43,5 +44,9 @@ public class BillboardModel implements IBillboardModel {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(subscriber);
 
+    }
+
+    public void unsubscribe() {
+        subscribe.unsubscribe();
     }
 }
