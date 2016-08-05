@@ -10,9 +10,9 @@ import rx.Observable;
  * Mail:121116111@qq.com
  */
 public interface NetworkMusicApi {
-    @GET("v1/restserver/ting/?format=json&calback=&from=webapp_music&method==baidu.ting.billboard.billList")
+    @GET("v1/restserver/ting?format=json&calback=&from=webapp_music&method==baidu.ting.billboard.billList")
     Observable<LinkSongList> getLinkSongList(@Query("type") int type, @Query("size") int size, @Query("offset") int page);
 }
 
 
-//format=json&calback=&from=webapp_music&method==baidu.ting.billboard.billList&type=1&size=10&offset=0
+//http://tingapi.ting.baidu.com/v1/restserver/ting?format=json&calback=&from=webapp_music&method==baidu.ting.billboard.billList&type=1&size=10&offset=0

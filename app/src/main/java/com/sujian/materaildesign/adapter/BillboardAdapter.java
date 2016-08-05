@@ -43,9 +43,9 @@ public class BillboardAdapter extends BaseRecylerViewAdapter<Billboard, Billboar
                 .into(viewHolder.liv_img);
         viewHolder.liv_img.setLabelText(data.getBillboardBean().getName());
         if (data.getSongListBeen().size() == 3) {
-            viewHolder.tv_one.setText(data.getSongListBeen().get(0).getTitle());
-            viewHolder.tv_two.setText(data.getSongListBeen().get(1).getTitle());
-            viewHolder.tv_three.setText(data.getSongListBeen().get(2).getTitle());
+            viewHolder.tv_one.setText("1." + data.getSongListBeen().get(0).getTitle());
+            viewHolder.tv_two.setText("2." + data.getSongListBeen().get(1).getTitle());
+            viewHolder.tv_three.setText("3." + data.getSongListBeen().get(2).getTitle());
         }
     }
 }

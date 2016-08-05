@@ -49,6 +49,7 @@ public class LocalMusicModel implements ILocalMusicModel {
                 song.setDuration(duration);
                 song.setSize(size);
                 song.setPath(url);
+                song.setMusicType(Song.MusicType.LocalMusic);
                 songs.add(song);
             }
         }

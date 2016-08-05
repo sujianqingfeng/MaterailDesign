@@ -8,13 +8,12 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.sujian.materaildesign.R;
-import com.sujian.materaildesign.adapter.NetworkListSongAdapter;
+import com.sujian.materaildesign.adapter.LocalMusicAdapter;
 import com.sujian.materaildesign.frame.view.AppDelegate;
-import com.sujian.materaildesign.model.music.Billboard;
-import com.sujian.materaildesign.model.music.LinkSongList;
+import com.sujian.materaildesign.model.music.Song;
 import com.sujian.materaildesign.presenter.NetworkSongListActivity;
+import com.sujian.materaildesign.uitls.UIUitls;
 import com.sujian.materaildesign.wiget.SpaceItemDecoration;
-import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,9 +27,9 @@ import butterknife.BindView;
 public class NetworkSongListDelegate extends AppDelegate {
 
     private LinearLayoutManager manager;
-    private List<LinkSongList.SongListBean> list;
+    private List<Song> list;
     private NetworkSongListActivity activity;
-    private NetworkListSongAdapter adapter;
+    private LocalMusicAdapter adapter;
 
     @BindView(R.id.tb_network)
     Toolbar tb_network;
@@ -69,11 +68,15 @@ public class NetworkSongListDelegate extends AppDelegate {
         activity = getActivity();
         list = new ArrayList<>();
 
+
+        srl_network.setProgressViewOffset(false, 0, UIUitls.dip2px(getActivity(), 24));
+        srl_network.setRefreshing(true);
+
         manager = new LinearLayoutManager(activity);
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         rv_network.setLayoutManager(manager);
 
-        adapter = new NetworkListSongAdapter(list);
+        adapter = new LocalMusicAdapter(list);
         rv_network.setAdapter(adapter);
 
         rv_network.addItemDecoration(new SpaceItemDecoration(12));
@@ -88,7 +91,7 @@ public class NetworkSongListDelegate extends AppDelegate {
      * @param data
      * @param isLoadMore
      */
-    public void refreshRecyclerView(List<LinkSongList.SongListBean> data, boolean isLoadMore) {
+    public void refreshRecyclerView(List<Song> data, boolean isLoadMore) {
         if (isLoadMore) {
             list.addAll(data);
         } else {
@@ -111,11 +114,11 @@ public class NetworkSongListDelegate extends AppDelegate {
                 .into(iv_network);
     }
 
-    public NetworkListSongAdapter getAdapter() {
+    public LocalMusicAdapter getAdapter() {
         return adapter;
     }
 
-    public List<LinkSongList.SongListBean> getList() {
+    public List<Song> getList() {
         return list;
     }
 

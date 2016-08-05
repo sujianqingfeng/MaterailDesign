@@ -14,6 +14,11 @@ public class Song {
     private String album;
     private long albumId;
     private String path;
+    private MusicType musicType;
+
+    public enum MusicType {
+        LocalMusic, NetworkMusic
+    }
 
     public String getAlbum() {
         return album;
@@ -79,6 +84,14 @@ public class Song {
         this.title = title;
     }
 
+    public MusicType getMusicType() {
+        return musicType;
+    }
+
+    public void setMusicType(MusicType musicType) {
+        this.musicType = musicType;
+    }
+
     @Override
     public String toString() {
         return "Song{" +
@@ -90,6 +103,7 @@ public class Song {
                 ", artist='" + artist + '\'' +
                 ", albumId=" + albumId +
                 ", path='" + path + '\'' +
+                ", musicType=" + musicType +
                 '}';
     }
 }
