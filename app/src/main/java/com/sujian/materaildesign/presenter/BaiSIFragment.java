@@ -100,6 +100,7 @@ public class BaiSIFragment extends FragmentPresenter<PublicVideoFDelegate> {
     }
 
     private void getBaiSiFromService() {
+        Logger.e("开始获取百思视频");
         baiSiModel.getBaiSiModel(page, new Subscriber<BaiSiEntity>() {
             @Override
             public void onCompleted() {
@@ -108,7 +109,8 @@ public class BaiSIFragment extends FragmentPresenter<PublicVideoFDelegate> {
 
             @Override
             public void onError(Throwable e) {
-
+                Logger.e("获取百思数据失败");
+                e.printStackTrace();
             }
 
             @Override
@@ -118,5 +120,11 @@ public class BaiSIFragment extends FragmentPresenter<PublicVideoFDelegate> {
             }
         });
         page++;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        baiSiModel.unsubscribe();
     }
 }

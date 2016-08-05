@@ -22,7 +22,9 @@ public class BillboardModel implements IBillboardModel {
     Subscription subscribe;
     @Override
     public void getBillboard(Integer[] types, Subscriber<Billboard> subscriber) {
-        final NetworkMusicApi networkMusicApi = RetrofitWapper.getRetrofitWapperInstance(Constant.MUSIC_BASE_URL).create(NetworkMusicApi.class);
+        final NetworkMusicApi networkMusicApi = RetrofitWapper.getRetrofitWapperInstance()
+                .setBaseUrl(Constant.MUSIC_BASE_URL)
+                .create(NetworkMusicApi.class);
 
         subscribe = Observable.from(types)
                 .flatMap(new Func1<Integer, Observable<LinkSongList>>() {

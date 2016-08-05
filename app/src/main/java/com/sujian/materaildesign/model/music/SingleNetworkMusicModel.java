@@ -21,8 +21,12 @@ import rx.schedulers.Schedulers;
 public class SingleNetworkMusicModel implements ISingleNetworkMusicModel {
     @Override
     public void getSingleIfo(int type, int size, int page, Subscriber<List<Song>> subscriber) {
-        final SingleNetworkMusicApi singleNetworkMusicApi = RetrofitWapper.getRetrofitWapperInstance(Constant.MUSIC_BASE_URL).create(SingleNetworkMusicApi.class);
-        NetworkMusicApi networkMusicApi = RetrofitWapper.getRetrofitWapperInstance(Constant.MUSIC_BASE_URL).create(NetworkMusicApi.class);
+        final SingleNetworkMusicApi singleNetworkMusicApi = RetrofitWapper.getRetrofitWapperInstance()
+                .setBaseUrl(Constant.MUSIC_BASE_URL)
+                .create(SingleNetworkMusicApi.class);
+        NetworkMusicApi networkMusicApi = RetrofitWapper.getRetrofitWapperInstance()
+                .setBaseUrl(Constant.MUSIC_BASE_URL)
+                .create(NetworkMusicApi.class);
         networkMusicApi.getLinkSongList(type, size, page)
                 .flatMap(new Func1<LinkSongList, Observable<LinkSongList.SongListBean>>() {
                     @Override

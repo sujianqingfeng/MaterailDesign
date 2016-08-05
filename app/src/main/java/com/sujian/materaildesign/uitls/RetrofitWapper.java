@@ -1,5 +1,11 @@
 package com.sujian.materaildesign.uitls;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -12,15 +18,32 @@ public class RetrofitWapper {
 
     private static RetrofitWapper mRetrofitWapper;
     private Retrofit mRetrofit;
+    private Retrofit.Builder builder;
 
-    private RetrofitWapper() {
-    }
 
     /**
      * 将构造函数私有化
      */
-    private RetrofitWapper(String url) {
-        mRetrofit = new Retrofit.Builder().baseUrl(url).addConverterFactory(GsonConverterFactory.create()).addCallAdapterFactory(RxJavaCallAdapterFactory.create()).build();
+    private RetrofitWapper() {
+        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .connectTimeout(15, TimeUnit.SECONDS)
+                .build();
+
+        builder = new Retrofit.Builder()
+                .client(okHttpClient)
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create());
+    }
+
+    /**
+     * 设置根url
+     * @param url
+     * @return
+     */
+    public Retrofit setBaseUrl(String url) {
+        mRetrofit = builder.baseUrl(url)
+                .build();
+        return mRetrofit;
     }
 
     /**
@@ -28,11 +51,11 @@ public class RetrofitWapper {
      *
      * @return
      */
-    public static RetrofitWapper getRetrofitWapperInstance(String url) {
+    public static RetrofitWapper getRetrofitWapperInstance() {
         if (mRetrofitWapper == null) {
             synchronized (RetrofitWapper.class) {
                 if (mRetrofitWapper == null) {
-                    mRetrofitWapper = new RetrofitWapper(url);
+                    mRetrofitWapper = new RetrofitWapper();
                 }
             }
         }

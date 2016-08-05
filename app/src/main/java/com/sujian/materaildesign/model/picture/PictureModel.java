@@ -14,7 +14,9 @@ import rx.schedulers.Schedulers;
 public class PictureModel implements IPictureModel {
     @Override
     public void getPicture(int num, Subscriber<PictureEntity> subscriber) {
-        PictureApi pictureApi = RetrofitWapper.getRetrofitWapperInstance(Constant.BAIDU_BASE_URL).create(PictureApi.class);
+        PictureApi pictureApi = RetrofitWapper.getRetrofitWapperInstance()
+                .setBaseUrl(Constant.BAIDU_BASE_URL)
+                .create(PictureApi.class);
         pictureApi.getPicture(num)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

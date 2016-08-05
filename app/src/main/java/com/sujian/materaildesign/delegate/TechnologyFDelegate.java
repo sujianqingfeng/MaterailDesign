@@ -11,6 +11,7 @@ import com.sujian.materaildesign.adapter.NewRecyclerViewAdapter;
 import com.sujian.materaildesign.frame.view.AppDelegate;
 import com.sujian.materaildesign.model.news.NewEntity;
 import com.sujian.materaildesign.presenter.NewsActivity;
+import com.sujian.materaildesign.uitls.UIUitls;
 import com.sujian.materaildesign.wiget.SpaceItemDecoration;
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
@@ -63,7 +64,7 @@ public class TechnologyFDelegate extends AppDelegate {
         rv_technology.setAdapter(adapter);
         rv_technology.addItemDecoration(new SpaceItemDecoration(12));
 
-
+        srl_technology.setProgressViewOffset(false, 0, UIUitls.dip2px(getActivity(), 24));
         srl_technology.setRefreshing(true);
     }
 

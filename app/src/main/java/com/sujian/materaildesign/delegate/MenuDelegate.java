@@ -170,7 +170,6 @@ public abstract class MenuDelegate extends AppDelegate {
             intent.setClass(getActivity(), cls);
             // 此标志用于启动一个Activity的时候，若栈中存在此Activity实例，则把它调到栈顶。不创建多一个
             intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            //getActivity().finish();
             getActivity().startActivity(intent);
             getActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
 

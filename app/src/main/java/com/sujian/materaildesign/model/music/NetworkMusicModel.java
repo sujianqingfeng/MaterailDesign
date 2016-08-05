@@ -18,7 +18,9 @@ import rx.schedulers.Schedulers;
 public class NetworkMusicModel implements INetworkMusicModel {
     @Override
     public void getLinkSongList(int type, int size, int page, Subscriber<LinkSongList> subscriber) {
-        NetworkMusicApi networkMusicApi = RetrofitWapper.getRetrofitWapperInstance(Constant.MUSIC_BASE_URL).create(NetworkMusicApi.class);
+        NetworkMusicApi networkMusicApi = RetrofitWapper.getRetrofitWapperInstance()
+                .setBaseUrl(Constant.MUSIC_BASE_URL)
+                .create(NetworkMusicApi.class);
         networkMusicApi.getLinkSongList(type, size, page)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

@@ -8,4 +8,6 @@ import rx.Subscriber;
  */
 public interface IBaiSiModel {
     void getBaiSiModel(int p, Subscriber<BaiSiEntity> subscriber);
+
+    void unsubscribe();
 }

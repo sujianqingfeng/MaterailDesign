@@ -12,6 +12,7 @@ import com.sujian.materaildesign.model.news.NewEntity;
 import com.sujian.materaildesign.model.video.BaiSiEntity;
 import com.sujian.materaildesign.presenter.NewsActivity;
 import com.sujian.materaildesign.presenter.VideoActivity;
+import com.sujian.materaildesign.uitls.UIUitls;
 import com.sujian.materaildesign.wiget.SpaceItemDecoration;
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
@@ -63,6 +64,8 @@ public class PublicVideoFDelegate extends AppDelegate {
         adapter = new VideoRecyclerViewAdapter(videoActivity, list);
         recyclerView.setAdapter(adapter);
         recyclerView.addItemDecoration(new SpaceItemDecoration(12));
+
+
 //        recyclerView.addItemDecoration(
 //                new HorizontalDividerItemDecoration.Builder(videoActivity)
 //                        .color(R.color.divider)
@@ -70,6 +73,7 @@ public class PublicVideoFDelegate extends AppDelegate {
 //                        .marginResId(R.dimen.leftmargin, R.dimen.rightmargin)
 //                        .build());
 
+        swipeRefreshLayout.setProgressViewOffset(false, 0, UIUitls.dip2px(getActivity(), 24));
         swipeRefreshLayout.setRefreshing(true);
     }
 
