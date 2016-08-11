@@ -1,24 +1,21 @@
 package com.sujian.materaildesign.delegate;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
+import android.annotation.TargetApi;
 import android.os.Build;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.RelativeLayout;
 
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.orhanobut.logger.Logger;
 import com.sujian.materaildesign.R;
 import com.sujian.materaildesign.frame.view.AppDelegate;
-import com.sujian.materaildesign.player.MusicPlayer;
 import com.sujian.materaildesign.presenter.MusicActivity;
-
-import net.qiujuer.genius.blur.StackBlur;
+import com.sujian.materaildesign.rxkit.SchedulersCompat;
+import com.sujian.materaildesign.rxkit.subscribe.GlideBlurOnSubscribe;
 
 import butterknife.BindView;
+import rx.Observable;
+import rx.Subscriber;
 
 /**
  * 音乐view
@@ -42,15 +39,9 @@ public class MusicDalegale extends AppDelegate {
     @Override
     public void initWidget() {
         super.initWidget();
-        initBG();
+
     }
 
-    @Override
-    public Toolbar getToolbar() {
-
-        //tb_music.setTitle(MusicPlayer.getMusicPlayer().getNowPlaying().getTitle());
-        return super.getToolbar();
-    }
 
 
     @Override
@@ -59,23 +50,27 @@ public class MusicDalegale extends AppDelegate {
     }
 
 
-    private void initBG() {
-        rl_music.setBackgroundResource(R.mipmap.iv_splash);
-        final Bitmap bitmap = BitmapFactory.decodeResource(getActivity().getResources(), R.mipmap.iv_splash);
+    public void initBG(String url) {
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                final Bitmap b = StackBlur.blurNatively(bitmap, 50, false);
-                getActivity().runOnUiThread(new Runnable() {
+        Observable.create(new GlideBlurOnSubscribe(getActivity(), 100, url))
+                .compose(SchedulersCompat.<GlideDrawable>observeOnMainThread())
+                .subscribe(new Subscriber<GlideDrawable>() {
                     @Override
-                    public void run() {
-                        rl_music.setBackgroundDrawable(new BitmapDrawable(getActivity().getResources(), b));
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+                    @Override
+                    public void onNext(GlideDrawable glideDrawable) {
+                        Logger.e("成功得到磨砂图片");
+                        rl_music.setBackground(glideDrawable);
                     }
                 });
-            }
-        }).start();
-
-
     }
 }

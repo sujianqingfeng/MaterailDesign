@@ -1,11 +1,19 @@
 package com.sujian.materaildesign.model.music;
 
+import android.Manifest;
 import android.content.Context;
 import android.database.Cursor;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
+
+import com.tbruyelle.rxpermissions.RxPermissions;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import rx.Subscriber;
+import rx.functions.Func1;
+
 
 /**
  * Created by sujian on 2016/7/17.
@@ -13,7 +21,28 @@ import java.util.List;
  */
 public class LocalMusicModel implements ILocalMusicModel {
     @Override
-    public List<Song> getLocalMusicList(Context context) {
+    public void getLocalMusicList(final Context context, Subscriber<List<Song>> sub) {
+
+        //android 6.0 请求权限
+        RxPermissions.getInstance(context)
+                .request(Manifest.permission.READ_EXTERNAL_STORAGE)
+                .map(new Func1<Boolean, List<Song>>() {
+                    @Override
+                    public List<Song> call(Boolean aBoolean) {
+                        if (aBoolean) {
+                            return getSomg(context);
+                        } else {
+                            return null;
+                        }
+                    }
+                })
+                .subscribe(sub);
+
+
+    }
+
+    @NonNull
+    private List<Song> getSomg(Context context) {
         Cursor cursor = context.getContentResolver().query(
                 MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, null, null, null,
                 MediaStore.Audio.Media.DEFAULT_SORT_ORDER);

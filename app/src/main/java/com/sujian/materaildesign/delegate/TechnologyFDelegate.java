@@ -3,17 +3,14 @@ package com.sujian.materaildesign.delegate;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.TypedValue;
 
-import com.orhanobut.logger.Logger;
 import com.sujian.materaildesign.R;
 import com.sujian.materaildesign.adapter.NewRecyclerViewAdapter;
 import com.sujian.materaildesign.frame.view.AppDelegate;
 import com.sujian.materaildesign.model.news.NewEntity;
 import com.sujian.materaildesign.presenter.NewsActivity;
 import com.sujian.materaildesign.uitls.UIUitls;
-import com.sujian.materaildesign.wiget.SpaceItemDecoration;
-import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
+import com.sujian.materaildesign.widget.SpaceItemDecoration;
 
 import java.util.ArrayList;
 import java.util.List;

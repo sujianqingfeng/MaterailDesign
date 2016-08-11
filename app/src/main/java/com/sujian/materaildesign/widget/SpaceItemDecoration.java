@@ -1,10 +1,8 @@
-package com.sujian.materaildesign.wiget;
+package com.sujian.materaildesign.widget;
 
 import android.graphics.Rect;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-
-import com.sujian.materaildesign.uitls.UIUitls;
 
 /**
  * RecyclerView 间距分割线

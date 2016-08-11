@@ -8,12 +8,12 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.sujian.materaildesign.R;
-import com.sujian.materaildesign.adapter.LocalMusicAdapter;
+import com.sujian.materaildesign.adapter.MusicListAdapter;
 import com.sujian.materaildesign.frame.view.AppDelegate;
 import com.sujian.materaildesign.model.music.Song;
 import com.sujian.materaildesign.presenter.NetworkSongListActivity;
 import com.sujian.materaildesign.uitls.UIUitls;
-import com.sujian.materaildesign.wiget.SpaceItemDecoration;
+import com.sujian.materaildesign.widget.SpaceItemDecoration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +21,7 @@ import java.util.List;
 import butterknife.BindView;
 
 /**
+ * 在线音乐列表
  * Created by sujian on 2016/7/30.
  * Mail:121116111@qq.com
  */
@@ -29,7 +30,7 @@ public class NetworkSongListDelegate extends AppDelegate {
     private LinearLayoutManager manager;
     private List<Song> list;
     private NetworkSongListActivity activity;
-    private LocalMusicAdapter adapter;
+    private MusicListAdapter adapter;
 
     @BindView(R.id.tb_network)
     Toolbar tb_network;
@@ -76,7 +77,7 @@ public class NetworkSongListDelegate extends AppDelegate {
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         rv_network.setLayoutManager(manager);
 
-        adapter = new LocalMusicAdapter(list);
+        adapter = new MusicListAdapter(list);
         rv_network.setAdapter(adapter);
 
         rv_network.addItemDecoration(new SpaceItemDecoration(12));
@@ -114,7 +115,7 @@ public class NetworkSongListDelegate extends AppDelegate {
                 .into(iv_network);
     }
 
-    public LocalMusicAdapter getAdapter() {
+    public MusicListAdapter getAdapter() {
         return adapter;
     }
 

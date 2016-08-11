@@ -4,15 +4,12 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.sujian.materaildesign.R;
-import com.sujian.materaildesign.adapter.LocalMusicAdapter;
-import com.sujian.materaildesign.adapter.NewRecyclerViewAdapter;
+
+import com.sujian.materaildesign.adapter.MusicListAdapter;
 import com.sujian.materaildesign.frame.view.AppDelegate;
 import com.sujian.materaildesign.model.music.Song;
-import com.sujian.materaildesign.model.news.NewEntity;
 import com.sujian.materaildesign.presenter.MusicListActivity;
-import com.sujian.materaildesign.presenter.NewsActivity;
-import com.sujian.materaildesign.wiget.SpaceItemDecoration;
-import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
+import com.sujian.materaildesign.widget.SpaceItemDecoration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +26,7 @@ public class LocalMusicFDeletate extends AppDelegate {
     RecyclerView rv_localmusic;
 
     private List<Song> list;
-    private LocalMusicAdapter adapter;
+    private MusicListAdapter adapter;
     private MusicListActivity musicListActivity;
     private LinearLayoutManager linearLayoutManger;
 
@@ -54,7 +51,7 @@ public class LocalMusicFDeletate extends AppDelegate {
         linearLayoutManger.setOrientation(LinearLayoutManager.VERTICAL);
 
         rv_localmusic.setLayoutManager(linearLayoutManger);
-        adapter = new LocalMusicAdapter(list);
+        adapter = new MusicListAdapter(list);
         rv_localmusic.setAdapter(adapter);
         rv_localmusic.addItemDecoration(new SpaceItemDecoration(12));
 
@@ -69,7 +66,7 @@ public class LocalMusicFDeletate extends AppDelegate {
 
     }
 
-    public LocalMusicAdapter getAdapter() {
+    public MusicListAdapter getAdapter() {
         return adapter;
     }
 

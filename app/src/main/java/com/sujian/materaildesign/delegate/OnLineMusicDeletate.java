@@ -8,8 +8,7 @@ import com.sujian.materaildesign.adapter.BillboardAdapter;
 import com.sujian.materaildesign.frame.view.AppDelegate;
 import com.sujian.materaildesign.model.music.Billboard;
 import com.sujian.materaildesign.presenter.MusicListActivity;
-import com.sujian.materaildesign.wiget.SpaceItemDecoration;
-import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
+import com.sujian.materaildesign.widget.SpaceItemDecoration;
 
 import java.util.ArrayList;
 import java.util.List;

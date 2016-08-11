@@ -14,6 +14,8 @@ import com.sujian.materaildesign.player.PlayEvent;
 
 import java.util.List;
 
+import rx.Subscriber;
+
 /**
  * Created by sujian on 2016/7/17.
  * Mail:121116111@qq.com
@@ -50,10 +52,24 @@ public class LocalMusicFragment extends FragmentPresenter<LocalMusicFDeletate> {
     }
 
     private void getLocalMusic() {
-        List<Song> localMusicList = localMusicModel.getLocalMusicList(getActivity());
-        Logger.e(localMusicList.toString());
-        if (localMusicList != null) {
-            viewDelegate.refreshRecyclerView(localMusicList);
-        }
+        localMusicModel.getLocalMusicList(getActivity(), new Subscriber<List<Song>>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(List<Song> songs) {
+                Logger.e(songs.toString());
+                if (songs != null) {
+                    viewDelegate.refreshRecyclerView(songs);
+                }
+            }
+        });
     }
 }

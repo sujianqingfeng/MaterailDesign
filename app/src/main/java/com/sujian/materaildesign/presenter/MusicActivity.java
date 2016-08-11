@@ -7,10 +7,12 @@ import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.hwangjr.rxbus.RxBus;
 import com.orhanobut.logger.Logger;
 import com.sujian.materaildesign.R;
 import com.sujian.materaildesign.delegate.MusicDalegale;
 import com.sujian.materaildesign.frame.presenter.ActivityPresenter;
+import com.sujian.materaildesign.model.music.Song;
 import com.sujian.materaildesign.player.MusicPlayer;
 import com.sujian.materaildesign.player.PlayEvent;
 
@@ -49,18 +51,22 @@ public class MusicActivity extends ActivityPresenter<MusicDalegale> {
 
     @Override
     protected void initView() {
-        Logger.e("---------------------===------");
         initMpv();
     }
 
     private void initMpv() {
         MusicPlayer musicPlayer = MusicPlayer.getMusicPlayer();
         tb_music.setTitle(musicPlayer.getNowPlaying() != null ? musicPlayer.getNowPlaying().getTitle() : "");
+        if (musicPlayer.getNowPlaying().getMusicType() == Song.MusicType.NetworkMusic) {
+            mpv.setCoverURL(musicPlayer.getNowPlaying().getPicUrl());
+            viewDelegate.initBG(musicPlayer.getNowPlaying().getPicUrl());
+        }
+
         if (musicPlayer.isPlaying()) {
             Logger.e("播放中");
-            mpv.setCoverURL("http://i.gtimg.cn/music/photo/mid_album_300/2/5/001xdVLB17WQ25.jpg");
             mpv.setMax(musicPlayer.getDuration());
             mpv.setProgress(musicPlayer.getCurrentPosition());
+            mpv.setAutoProgress(true);
             mpv.start();
         } else {
             Logger.e("未播放");

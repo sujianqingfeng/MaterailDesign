@@ -15,6 +15,7 @@ public class Song {
     private long albumId;
     private String path;
     private MusicType musicType;
+    private String picUrl;
 
     public enum MusicType {
         LocalMusic, NetworkMusic
@@ -92,6 +93,14 @@ public class Song {
         this.musicType = musicType;
     }
 
+    public String getPicUrl() {
+        return picUrl;
+    }
+
+    public void setPicUrl(String picUrl) {
+        this.picUrl = picUrl;
+    }
+
     @Override
     public String toString() {
         return "Song{" +
@@ -104,6 +113,7 @@ public class Song {
                 ", albumId=" + albumId +
                 ", path='" + path + '\'' +
                 ", musicType=" + musicType +
+                ", picUrl='" + picUrl + '\'' +
                 '}';
     }
 }

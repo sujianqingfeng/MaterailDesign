@@ -5,16 +5,12 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.sujian.materaildesign.R;
-import com.sujian.materaildesign.adapter.NewRecyclerViewAdapter;
 import com.sujian.materaildesign.adapter.VideoRecyclerViewAdapter;
 import com.sujian.materaildesign.frame.view.AppDelegate;
-import com.sujian.materaildesign.model.news.NewEntity;
 import com.sujian.materaildesign.model.video.BaiSiEntity;
-import com.sujian.materaildesign.presenter.NewsActivity;
 import com.sujian.materaildesign.presenter.VideoActivity;
 import com.sujian.materaildesign.uitls.UIUitls;
-import com.sujian.materaildesign.wiget.SpaceItemDecoration;
-import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
+import com.sujian.materaildesign.widget.SpaceItemDecoration;
 
 import java.util.ArrayList;
 import java.util.List;
