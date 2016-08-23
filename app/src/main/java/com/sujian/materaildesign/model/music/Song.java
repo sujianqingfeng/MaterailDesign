@@ -16,6 +16,7 @@ public class Song {
     private String path;
     private MusicType musicType;
     private String picUrl;
+    private String lycUrl;
 
     public enum MusicType {
         LocalMusic, NetworkMusic
@@ -101,6 +102,14 @@ public class Song {
         this.picUrl = picUrl;
     }
 
+    public String getLycUrl() {
+        return lycUrl;
+    }
+
+    public void setLycUrl(String lycUrl) {
+        this.lycUrl = lycUrl;
+    }
+
     @Override
     public String toString() {
         return "Song{" +
@@ -114,6 +123,7 @@ public class Song {
                 ", path='" + path + '\'' +
                 ", musicType=" + musicType +
                 ", picUrl='" + picUrl + '\'' +
+                ", lycUrl='" + lycUrl + '\'' +
                 '}';
     }
 }

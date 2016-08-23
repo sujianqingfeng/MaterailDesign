@@ -67,6 +67,7 @@ public class OnLineMusicFragment extends FragmentPresenter<OnLineMusicDeletate> 
             @Override
             public void onError(Throwable e) {
                 Logger.e("获取榜单数据失败");
+                viewDelegate.snackbar("获取榜单信息失败！请检查网络");
                 e.printStackTrace();
             }
 

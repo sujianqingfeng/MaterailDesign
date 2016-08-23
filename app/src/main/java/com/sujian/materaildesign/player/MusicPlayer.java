@@ -2,6 +2,7 @@ package com.sujian.materaildesign.player;
 
 import android.media.MediaPlayer;
 
+import com.hwangjr.rxbus.RxBus;
 import com.orhanobut.logger.Logger;
 import com.sujian.materaildesign.model.music.Song;
 import com.sujian.materaildesign.uitls.T;
@@ -26,7 +27,7 @@ public class MusicPlayer implements MediaPlayer.OnCompletionListener {
 
 
     //枚举 播放模式 循环 随机 重复
-    private enum PlayerMode {
+    public enum PlayerMode {
         LOOP, RANDOM, REPEAT
     }
 
@@ -88,7 +89,9 @@ public class MusicPlayer implements MediaPlayer.OnCompletionListener {
      *
      * @param song
      */
-    public void play(Song song) {
+    public void play(final Song song) {
+        if (song==null)
+            return;
         Logger.e("播放方法调用 url为" + song.getPath());
         try {
             managedMediaPlayer.reset();
@@ -99,6 +102,7 @@ public class MusicPlayer implements MediaPlayer.OnCompletionListener {
                 public void onPrepared(MediaPlayer mp) {
                     Logger.e("准备完毕");
                     managedMediaPlayer.start();
+                    RxBus.get().post(new ReflashViewEvent(song));
                 }
             });
         } catch (IOException e) {
@@ -113,7 +117,7 @@ public class MusicPlayer implements MediaPlayer.OnCompletionListener {
      * @return
      */
     public Song getNowPlaying() {
-        Logger.e("队列" + (mQueue == null) + "index---" + mQueueIndex);
+       // Logger.e("队列" + (mQueue == null) + "index---" + mQueueIndex);
         if (mQueue == null || mQueue.size() == 0)
             return null;
         return mQueue.get(mQueueIndex);
@@ -121,7 +125,7 @@ public class MusicPlayer implements MediaPlayer.OnCompletionListener {
 
     //得到下一首
     private Song getNextSong() {
-        if (mQueue == null) {
+        if (mQueue == null||mQueue.size()==0) {
             return null;
         }
 

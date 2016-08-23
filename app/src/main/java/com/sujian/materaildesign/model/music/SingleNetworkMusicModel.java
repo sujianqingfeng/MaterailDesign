@@ -59,6 +59,7 @@ public class SingleNetworkMusicModel implements ISingleNetworkMusicModel {
                         song.setDuration(songInfo.getBitrate().getFile_duration());
                         song.setTitle(songInfo.getSonginfo().getTitle());
                         song.setPicUrl(songInfo.getSonginfo().getPic_big());
+                        song.setLycUrl(songInfo.getSonginfo().getLrclink());
                         return Observable.just(song);
                     }
                 })

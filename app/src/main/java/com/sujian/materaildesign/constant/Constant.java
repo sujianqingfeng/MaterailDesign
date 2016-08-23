@@ -19,4 +19,6 @@ public class Constant {
 
     public static final Integer[] MUSIC_TYPE = new Integer[]{1, 2, 11, 21, 22, 23, 24, 25};
 
+    public static final int MSG_REFRESH=0x167;
+
 }

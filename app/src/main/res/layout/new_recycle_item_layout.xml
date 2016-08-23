@@ -21,7 +21,7 @@
 
         <TextView
             android:id="@+id/tv_new_item_title"
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_margin="12dp"
             android:text="标题标题标题标题标题标题标题标题" />
