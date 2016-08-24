@@ -21,4 +21,10 @@ public class Constant {
 
     public static final int MSG_REFRESH=0x167;
 
+    public static final String KEY_TEXT_SIZE="key_text_size";
+
+    public static final String KEY_LINE_SPACE="key_line_space";
+
+    public static final String KEY_HIGHLIGHT_COLOR="key_highlight_color";
+
 }

@@ -219,6 +219,13 @@ public class MusicPlayer implements MediaPlayer.OnCompletionListener {
         return managedMediaPlayer.isPlaying();
     }
 
+    public void seekTo(int value){
+        managedMediaPlayer.seekTo(value);
+        if(managedMediaPlayer.getmState() == ManagedMediaPlayer.Status.PAUSED) {
+            managedMediaPlayer.start();
+        }
+    }
+
     /**
      * 释放资源
      */
@@ -243,6 +250,10 @@ public class MusicPlayer implements MediaPlayer.OnCompletionListener {
 
     public PlayerMode getPlayerMode() {
         return playerMode;
+    }
+
+    public ManagedMediaPlayer.Status getPlayStatus(){
+        return managedMediaPlayer.getmState();
     }
 
     public void setPlayerMode(PlayerMode playerMode) {

@@ -1,15 +1,20 @@
 package com.sujian.materaildesign.delegate;
 
 import android.annotation.TargetApi;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
+import android.preference.PreferenceManager;
 import android.support.v7.widget.Toolbar;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.f2prateek.rx.preferences.Preference;
+import com.f2prateek.rx.preferences.RxSharedPreferences;
 import com.orhanobut.logger.Logger;
 import com.sujian.materaildesign.R;
+import com.sujian.materaildesign.constant.Constant;
 import com.sujian.materaildesign.frame.view.AppDelegate;
 import com.sujian.materaildesign.presenter.MusicActivity;
 import com.sujian.materaildesign.rxkit.SchedulersCompat;
@@ -27,7 +32,7 @@ import rx.Subscriber;
  */
 public class MusicDalegale extends AppDelegate {
     @BindView(R.id.rl_music)
-    LinearLayout rl_music;
+    RelativeLayout rl_music;
 
     @BindView(R.id.tb_music)
     Toolbar tb_music;
@@ -45,9 +50,14 @@ public class MusicDalegale extends AppDelegate {
     @Override
     public void initWidget() {
         super.initWidget();
-        lyricView.setLineSpace(12.0f);
-        lyricView.setTextSize(15.0f);
-        lyricView.setHighLightTextColor(Color.parseColor("#4FC5C7"));
+        SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
+        RxSharedPreferences rxSharedPreferences = RxSharedPreferences.create(defaultSharedPreferences);
+        Preference<Float> sizeFloat = rxSharedPreferences.getFloat(Constant.KEY_TEXT_SIZE, 12.0f);
+        Preference<Float> spaceFloat = rxSharedPreferences.getFloat(Constant.KEY_LINE_SPACE, 15.0f);
+        Preference<Integer> integer = rxSharedPreferences.getInteger(Constant.KEY_HIGHLIGHT_COLOR, Color.parseColor("#4FC5C7"));
+        lyricView.setLineSpace(sizeFloat.get());
+        lyricView.setTextSize(spaceFloat.get());
+        lyricView.setHighLightTextColor(integer.get());
     }
 
 
