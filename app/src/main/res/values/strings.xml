@@ -12,4 +12,7 @@
     <string name="technology">科技</string>
     <string name="international">国际</string>
     <string name="sports">体育</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
