@@ -19,6 +19,8 @@ mvp的实现采用了一个框架TheMvp，详情http://www.kymjs.com/code/2015/1
   - 新闻
 
 # 功能截图
+ 图片
+ ![图片]("https://github.com/sujianqingfeng/MaterailDesign/blob/master/screenshot/%E5%9B%BE%E7%89%87.png?raw=true" "图片")
 
 
 # 关于我
